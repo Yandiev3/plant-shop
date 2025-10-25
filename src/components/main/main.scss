@@ -2,20 +2,116 @@ main{
     padding: 0;
     margin: auto
 
-    section{
+}
+.firstTitul{
+    background: #004F44;
+    margin: auto;
+    width: auto;
+    .first{
+        height: 100vh;
         width: 1160px;
         margin: auto;
     }
+    .firstImage{
+        img{
+            width: 600px;
+            height: 545px;
+        }
+    }
+
+    .firstContainer{
+        display: flex;
+        padding: 124px 0px 0px 0px;
+        gap: 136px;
+        .firstContent{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 420px;
+            max-height: 400px;
+
+            h1{
+                font-size: 64px;
+                color: white;
+            }
+            a{
+                font-size: 16px;
+                color: white;
+            }
+            p{
+                font-size: 16px;
+                font-weight: 100;
+                color: white;
+            }
+        }
+
+        .firstBtn{
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            max-width: auto;
+            gap: px;
+            padding-top: 32px;
+            button{
+                border: none;
+                color: #004F44;
+                padding: 19px 41px;
+                font-size: 16px;
+                width: 160px;
+                height: 60px;
+                border-radius: 1px;
+            }
+
+            a{
+                text-decoration: none;
+            }
+        }
+    }
 }
 
-.first{
-    background: #004F44;
-    height: 100vh;
+.featuredCont{
+    width: 1160px;
+    margin: auto;
+    margin-top: 64px;
+    .featureTitle{
+        display: flex;
+        justify-content: space-between;
+        color: #004F44;
+        
+        p{
+            font-size: 24px;
+            font-weight: 300;
+        }
+    }
 }
 
-.firstImage{
-    img{
-        width: 600px;
-        height: 545px;
+.secondCont{
+    background-color: #F3FFFC;
+    height: 240px;
+    margin: auto;
+    margin-top: 96px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    .secondMain{
+        max-width: 1160px;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        gap: 16px;   
+        span{
+            width: 60px;
+            height: 60px;
+        }
+        input{
+            width: 1010px;
+            color: #004F44;
+            padding-left: 28px;
+            border: 1px solid #004F44;
+        
+            :focus{
+                color: #004F44;
+            }
+        }
     }
 }

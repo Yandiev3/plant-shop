@@ -4,20 +4,20 @@ import './header.scss'
 
 export default function Header() {
   return (
-    <div>
+    <div className='headerDiv'>
         <header>
             <nav>
                 <li>
-                    Shop
+                    <a href="#">Shop</a>
                 </li>
                 <li>
-                    Products
+                    <a href="#">Products</a>
                 </li>
                 <li>
-                    Fertilizer
+                    <a href="#">Fertilizer</a>
                 </li>
                 <li>
-                    Guide
+                    <a href="#">Guide</a>
                 </li>
             </nav>
             <nav>

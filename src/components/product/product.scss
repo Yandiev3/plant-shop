@@ -1,0 +1,80 @@
+.productCont{
+    max-width: 280px;
+    max-height: 475px;
+
+    .productCart{
+        margin-top: 48px;
+        
+        .productimage{
+            img{
+                max-width: 280px;
+                max-height: 360px;
+            }            
+        }
+
+        .productTitle{
+            display: flex;
+            justify-content: space-between;
+            color: #004F44;
+            margin-top: 20px;
+            font-size: 24px;
+        }
+
+        .productDescription{
+            margin-top: 16px;
+            p{
+                color: gray;
+                line-height: 0;
+            }
+
+            .productFooter{
+                display: flex;
+                justify-content: space-between;
+
+            
+                .productColor {
+                    gap: 8px;
+                    
+                    span {
+                        width: 16px;
+                        height: 16px;
+                        border-radius: 50%;
+                        display: inline-block;
+                        margin-right: 4px;
+                    }
+                    
+                    .b {
+                        background-color: black;
+                    }
+                    .p {
+                        background-color: pink;
+                    }
+                    .g {
+                        background-color: gray;
+                    }
+                    .o {
+                        background-color: orange;
+                    }
+                }
+
+                .btnBuy{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    button{
+                        width: 80px;
+                        height: 35px;
+                        background: none;
+                        border: 1px solid #004F44;
+                        color: #004F44;
+                    }
+                    :hover{
+                        background-color: #004F44;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+}
+
