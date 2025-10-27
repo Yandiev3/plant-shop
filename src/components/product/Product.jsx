@@ -1,6 +1,8 @@
 import React from 'react'
 import './product.scss'
-const product = [
+import { useEffect } from 'react';
+
+let product = [
     { img: "./image/product/1.png", name: 'Peperomia Ginny', price: 25},
     { img: "./image/product/2.png", name: 'Bird’s Nest Fern', price: 45},
     { img: "./image/product/3.png", name: 'Large Majesty Palm', price: 52},
@@ -9,6 +11,13 @@ const product = [
 ];  
 
 export default function Product() {
+    useEffect(() => {
+        product = product.concat(JSON.parse(localStorage.getItem("products")))
+        console.log(JSON.parse(localStorage.getItem("products")));
+        
+        console.log(product);
+        
+    })
   return (
     <div className="productCont">
         {product.map((item) => (

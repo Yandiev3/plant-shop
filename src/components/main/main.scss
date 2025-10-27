@@ -77,10 +77,34 @@ main{
         display: flex;
         justify-content: space-between;
         color: #004F44;
-        
+        align-items: center;
         p{
             font-size: 24px;
             font-weight: 300;
+        }
+        button{
+            height: 40px;
+            background-color: white;
+            color: #004F44;
+            cursor: pointer;
+        }
+
+        
+    }
+}
+
+.ReactModal__Content{
+    width: 400px;
+    margin: auto;
+
+    .modal{
+        max-width: 350px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        form{
+            align-items: center;
         }
     }
 }

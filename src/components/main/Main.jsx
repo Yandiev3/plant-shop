@@ -1,16 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import './main.scss'
 import Product from '../product/Product'
+import Modal from 'react-modal';
+import { useForm } from "react-hook-form";
 
 export default function Main() {
 
-    const [name, setName] = useState('');  
-    useEffect(() => {  
-        localStorage.setItem('name22', name);  
-    }, [name]);  
-    const handleChange = (e) => {  
-        setName(e.value);  
-    };  
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const openModal = () => setModalIsOpen(true);
+    const closeModal = () => setModalIsOpen(false);
+
+    const { register, handleSubmit, reset, formState: { errors }} = useForm();
+
+    function addProduct(data) {
+        console.log(data);
+
+        if (localStorage.getItem("products") || JSON.parse(localStorage.getItem("products"))?.length) {
+            let products = JSON.parse(localStorage.getItem("products"))
+            products.push(data)
+            localStorage.setItem("products", JSON.stringify(products))
+        } else {
+            localStorage.setItem("products", JSON.stringify([data]))
+        }
+
+        // localStorage.setItem("products", JSON.stringify(products))
+    }
 
   return (
     <>
@@ -36,7 +50,29 @@ export default function Main() {
         <div className="featuredCont">
             <div className="featureTitle">
                 <h1>Featured</h1>
-                <button onClick={handleChange()}>Добавить</button>
+                <div>
+                    <button onClick={openModal}>Добавить продукт</button>
+                        <Modal
+                            isOpen={modalIsOpen}
+                            onRequestClose={closeModal}
+                            contentLabel=""
+                        >
+                            <div className="modal">
+                                <h2>Добавить продукт</h2>
+                                    <form onSubmit={handleSubmit(addProduct)}>
+                                    <input className= "inpName" type="text" placeholder="Название продукта" {...register("name", { required: "Это поле обязательно для заполнения",})}/>
+                                    { errors.name && <p className="error">{ errors.name.message }</p>}
+
+                                    <input className= "inpPrice" type="text" placeholder="Цена" {...register("price", { required: "Это поле обязательно для заполнения",})}/>
+                                    { errors.price && <p className="error">{ errors.price.message }</p>}
+
+                                    <input className= "inpFile" type="file" placeholder="Название продукта" {...register("image", { required: "Это поле обязательно для заполнения",})}/>
+
+                                        <button type='submit'>Добавить</button>
+                                    </form>
+                            </div>
+                        </Modal>
+                </div>
                 <p>view all</p>
             </div>
 
