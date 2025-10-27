@@ -1,7 +1,8 @@
 .productCont{
     max-width: 280px;
-    max-height: 475px;
-
+    max-height: 475px;  
+    display: flex;
+    gap: 24px;
     .productCart{
         margin-top: 48px;
         

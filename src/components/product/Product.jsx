@@ -1,20 +1,28 @@
 import React from 'react'
 import './product.scss'
+const product = [
+    { img: "./image/product/1.png", name: 'Peperomia Ginny', price: 25},
+    { img: "./image/product/2.png", name: 'Bird’s Nest Fern', price: 45},
+    { img: "./image/product/3.png", name: 'Large Majesty Palm', price: 52},
+    { img: "./image/product/4.png", name: 'Pet Friendly Plant', price: 30},
+
+];  
 
 export default function Product() {
   return (
     <div className="productCont">
+        {product.map((item) => (
         <div className="productCart">
             <div className="productimage">
-                <img src="./image/product/1.png" alt="#" />
+                <img src={item.img} alt="#" />
             </div>
             
             <div className="productTitle">
                 <div className="productName">
-                    Peperomia Ginny
+                    {item.name}
                 </div>
                 <div className="productPrice">
-                    $25
+                    ${item.price}
                 </div>
             </div>
 
@@ -35,6 +43,7 @@ export default function Product() {
                 </div>
             </div>
         </div>
+        ))}
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import './header.scss'
+import { Link } from 'react-router-dom'
 
 
 export default function Header() {
@@ -8,16 +9,16 @@ export default function Header() {
         <header>
             <nav>
                 <li>
-                    <a href="#">Shop</a>
+                    <Link href="#">Shop</Link>
                 </li>
                 <li>
-                    <a href="#">Products</a>
+                    <Link href="#">Products</Link>
                 </li>
                 <li>
-                    <a href="#">Fertilizer</a>
+                    <Link href="#">Fertilizer</Link>
                 </li>
                 <li>
-                    <a href="#">Guide</a>
+                    <Link href="#">Guide</Link>
                 </li>
             </nav>
             <nav>
