@@ -1,15 +1,37 @@
 .productCont{
-    max-width: 280px;
-    max-height: 475px;  
     display: flex;
     gap: 24px;
+    overflow-x: auto;
+    padding: 10px 0;
+    
+    &::-webkit-scrollbar {
+        height: 8px;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background: #004F44;
+        border-radius: 10px;
+    }
+    
+    &::-webkit-scrollbar-thumb:hover {
+        background: #003329;
+    }
+    
     .productCart{
         margin-top: 48px;
+        min-width: 280px; 
+        flex-shrink: 0; 
         
         .productimage{
             img{
-                max-width: 280px;
-                max-height: 360px;
+                width: 280px;
+                height: 360px;
+                object-fit: cover;
             }            
         }
 
@@ -32,7 +54,6 @@
                 display: flex;
                 justify-content: space-between;
 
-            
                 .productColor {
                     gap: 8px;
                     
@@ -68,8 +89,10 @@
                         background: none;
                         border: 1px solid #004F44;
                         color: #004F44;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
                     }
-                    :hover{
+                    button:hover{
                         background-color: #004F44;
                         color: white;
                     }
@@ -79,3 +102,28 @@
     }
 }
 
+.products {
+    overflow-x: auto;
+    padding-bottom: 10px;
+    
+    &::-webkit-scrollbar {
+        height: 8px;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background: #004F44;
+        border-radius: 10px;
+    }
+    
+    &::-webkit-scrollbar-thumb:hover {
+        background: #003329;
+    }
+    
+    scrollbar-width: thin;
+    scrollbar-color: #004F44 #f1f1f1;
+}

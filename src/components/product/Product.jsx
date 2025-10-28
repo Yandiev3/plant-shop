@@ -1,29 +1,27 @@
 import React from 'react'
 import './product.scss'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-let product = [
-    { img: "./image/product/1.png", name: 'Peperomia Ginny', price: 25},
-    { img: "./image/product/2.png", name: 'Bird’s Nest Fern', price: 45},
-    { img: "./image/product/3.png", name: 'Large Majesty Palm', price: 52},
-    { img: "./image/product/4.png", name: 'Pet Friendly Plant', price: 30},
+export default function Product({ products = [] }) {
+    const [displayProducts, setDisplayProducts] = useState([]);
 
-];  
-
-export default function Product() {
     useEffect(() => {
-        product = product.concat(JSON.parse(localStorage.getItem("products")))
-        console.log(JSON.parse(localStorage.getItem("products")));
-        
-        console.log(product);
-        
-    })
-  return (
+        if (products && products.length > 0) {
+            setDisplayProducts(products);
+        } else {
+            const savedProducts = localStorage.getItem('products');
+            if (savedProducts) {
+                setDisplayProducts(JSON.parse(savedProducts));
+            }
+        }
+    }, [products]);
+
+    return (
     <div className="productCont">
-        {product.map((item) => (
-        <div className="productCart">
+        {displayProducts.map((item) => (
+        <div key={item.index} className="productCart">
             <div className="productimage">
-                <img src={item.img} alt="#" />
+                <img src={item.image} alt={item.name} />
             </div>
             
             <div className="productTitle">
@@ -36,23 +34,21 @@ export default function Product() {
             </div>
 
             <div className="productDescription">
-                
                 <div className="productFooter">
                     <div className="productColor">
-                <p>Pot color</p>
-
-                    <span className='b'></span>
-                    <span className='p'></span>
-                    <span className='g'></span>
-                    <span className='o'></span>
-                   </div>
-                   <div className="btnBuy">
-                    <button>Buy</button>
+                        <p>Pot color</p>
+                        <span className='b'></span>
+                        <span className='p'></span>
+                        <span className='g'></span>
+                        <span className='o'></span>
+                    </div>
+                    <div className="btnBuy">
+                        <button>Buy</button>
                     </div> 
                 </div>
             </div>
         </div>
         ))}
     </div>
-  )
+    )
 }

@@ -1,52 +1,53 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './main.scss'
 import Product from '../product/Product'
 import Modal from 'react-modal';
 import { useForm } from "react-hook-form";
 
-export default function Main() {
+const store = [
+    { image: "./image/product/1.png", name: 'Peperomia Ginny', price: 25 },
+    { image: "./image/product/2.png", name: 'Birds Nest Fern', price: 45 },
+    { image: "./image/product/3.png", name: 'Large Majesty Palm', price: 52 },
+    { image: "./image/product/4.png", name: 'Pet Friendly Plant', price: 30 },
+];
 
+export default function Main() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [products, setProducts] = useState([]);
     const openModal = () => setModalIsOpen(true);
     const closeModal = () => setModalIsOpen(false);
 
     const { register, handleSubmit, reset, formState: { errors }} = useForm();
 
-    function addProduct(data) {
-        console.log(data);
-
-        if (localStorage.getItem("products") || JSON.parse(localStorage.getItem("products"))?.length) {
-            let products = JSON.parse(localStorage.getItem("products"))
-            products.push(data)
-            localStorage.setItem("products", JSON.stringify(products))
+    useEffect(() => {
+        const savedProducts = localStorage.getItem('products');
+        if (savedProducts) {
+            setProducts(JSON.parse(savedProducts));
         } else {
-            localStorage.setItem("products", JSON.stringify([data]))
+            setProducts(store);
+            localStorage.setItem('products', JSON.stringify(store));
         }
+    }, []);
 
-        // localStorage.setItem("products", JSON.stringify(products))
+    function addProduct(data) {
+        const newProduct = {
+            name: data.name,
+            price: parseFloat(data.price),
+            image: data.image[0] ? URL.createObjectURL(data.image[0]) : "./image/product/1.png"
+        };
+
+        const updatedProducts = [...products, newProduct];
+        
+        localStorage.setItem('products', JSON.stringify(updatedProducts));
+        setProducts(updatedProducts);
+        
+        console.log(newProduct);
+        reset();
     }
 
-  return (
+    return (
     <>
     <main>
-        <div className="firstTitul">
-            <div className='first'>
-                <div className="firstContainer">
-                    <div className="firstContent">
-                        <h1>Happiness blooms from within</h1>
-                        <p>Our environment, the world in which we live and  work, is a mirror of our attitudes and expectations.</p>
-                            <div className="firstBtn">
-                                <button>Shop now</button>
-                                <a href="/#">Explore plants →</a>
-                            </div>
-                        </div>
-                        <div className="firstImage">
-                            <img src="./image/catry.png" alt="#"/>
-                        </div>
-                </div>
-            </div>
-        </div>
-
         <div className="featuredCont">
             <div className="featureTitle">
                 <h1>Featured</h1>
@@ -55,7 +56,6 @@ export default function Main() {
                         <Modal
                             isOpen={modalIsOpen}
                             onRequestClose={closeModal}
-                            contentLabel=""
                         >
                             <div className="modal">
                                 <h2>Добавить продукт</h2>
@@ -63,10 +63,12 @@ export default function Main() {
                                     <input className= "inpName" type="text" placeholder="Название продукта" {...register("name", { required: "Это поле обязательно для заполнения",})}/>
                                     { errors.name && <p className="error">{ errors.name.message }</p>}
 
-                                    <input className= "inpPrice" type="text" placeholder="Цена" {...register("price", { required: "Это поле обязательно для заполнения",})}/>
+                                    <input className= "inpPrice" type="number" placeholder="Цена" step="0.01" {...register("price", { 
+                                        required: "Это поле обязательно для заполнения",
+                                    })}/>
                                     { errors.price && <p className="error">{ errors.price.message }</p>}
 
-                                    <input className= "inpFile" type="file" placeholder="Название продукта" {...register("image", { required: "Это поле обязательно для заполнения",})}/>
+                                    <input className= "inpFile" type="file" {...register("image", )}/>
 
                                         <button type='submit'>Добавить</button>
                                     </form>
@@ -77,7 +79,7 @@ export default function Main() {
             </div>
 
             <div className="products">
-                    <Product/>
+                    <Product products={products}/>
             </div>    
         </div>
 
