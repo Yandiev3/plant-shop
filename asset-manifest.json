@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/plant-shop/static/css/main.ee5c65f0.css",
+    "main.js": "/plant-shop/static/js/main.16039efb.js",
+    "static/media/31.png": "/plant-shop/static/media/31.7cbac84a2ab55b843df7.png",
+    "index.html": "/plant-shop/index.html",
+    "main.ee5c65f0.css.map": "/plant-shop/static/css/main.ee5c65f0.css.map",
+    "main.16039efb.js.map": "/plant-shop/static/js/main.16039efb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ee5c65f0.css",
+    "static/js/main.16039efb.js"
+  ]
+}
